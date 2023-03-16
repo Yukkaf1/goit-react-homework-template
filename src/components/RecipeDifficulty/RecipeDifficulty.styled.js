@@ -14,3 +14,13 @@ export const BadgeList = styled.div`
   align-items: center;
   gap: 8px;
 `;
+
+export const Badge = styled.span`
+  paddig: 8px;
+  border: 1px solid ${p => p.theme.colors.black};
+  border-radius: 4px;
+
+  background-color: ${p => {
+    return p.active ? p.theme.colors.accent : p.theme.colors.white;
+  }};
+`;
