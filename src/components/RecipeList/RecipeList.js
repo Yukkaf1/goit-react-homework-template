@@ -5,8 +5,8 @@ import { ListItem } from './RecipeList.styled';
 export const RecipeList = ({ recipes }) => {
   return (
     <ul>
-      {recipes.map((recipe, idx) => (
-        <ListItem key={idx}>
+      {recipes.map((recipe, id) => (
+        <ListItem key={id}>
           <Recipe recipe={recipe} />
         </ListItem>
       ))}
@@ -17,7 +17,7 @@ export const RecipeList = ({ recipes }) => {
 RecipeList.propType = {
   recipe: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.String.isRequired,
+      id: PropTypes.string.isRequired,
     })
   ),
 };

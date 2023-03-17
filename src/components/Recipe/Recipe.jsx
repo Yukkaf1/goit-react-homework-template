@@ -13,3 +13,15 @@ export const Recipe = ({
     </Wrapper>
   );
 };
+
+Recipe.propType = {
+  recipe: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      time: PropTypes.string.isRequired,
+      servings: PropTypes.string.isRequired,
+      calories: PropTypes.string.isRequired,
+      difficulty: PropTypes.oneOf(['easy', 'medium', 'hard']),
+    })
+  ),
+};
