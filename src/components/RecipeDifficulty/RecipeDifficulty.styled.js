@@ -20,6 +20,10 @@ export const Badge = styled.span`
   border: 1px solid ${p => p.theme.colors.black};
   border-radius: 4px;
 
+  color: ${p => {
+    return p.active ? p.theme.colors.white : p.theme.colors.black;
+  }};
+
   background-color: ${p => {
     return p.active ? p.theme.colors.accent : p.theme.colors.white;
   }};

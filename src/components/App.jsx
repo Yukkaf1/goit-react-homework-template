@@ -1,5 +1,5 @@
 import { Recipe } from './Recipe/Recipe';
-import { RecipeList } from './RecipeList';
+import { RecipeList } from './RecipeList/RecipeList';
 import recipes from '../recepies.json';
 
 export const App = () => {
