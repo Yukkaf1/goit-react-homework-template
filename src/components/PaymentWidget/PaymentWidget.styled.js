@@ -16,8 +16,16 @@ export const Button = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 20px;
+  margin: 10px;
+
+  min-width: 120px;
+  text-transform: capitalize;
+  cursor: pointer;
+
+  background-color: ${p => {
+    return p.selected ? p.theme.colors.accent : p.theme.colors.black;
+  }}
 
   :hover {
-    border-color: tomato
+    border-color: ${p => p.theme.colors.accent}
 `;

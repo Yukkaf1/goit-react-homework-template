@@ -14,17 +14,27 @@ export class PaymentWidget extends Component {
   };
 
   render() {
+    const { selectedMethod } = this.state;
     return (
       <Container>
-        <Button onClick={() => this.selectPaymentMethod('mastercard')}>
+        <Button
+          selected={selectedMethod === 'mastercard'}
+          onClick={() => this.selectPaymentMethod('mastercard')}
+        >
           <FaCcMastercard /> Mastercard
         </Button>
 
-        <Button onClick={() => this.selectPaymentMethod('visa')}>
+        <Button
+          selected={selectedMethod === 'visa'}
+          onClick={() => this.selectPaymentMethod('visa')}
+        >
           <FaCcVisa /> Visa
         </Button>
 
-        <Button onClick={() => this.selectPaymentMethod('applepay')}>
+        <Button
+          selected={selectedMethod === 'applepay'}
+          onClick={() => this.selectPaymentMethod('applepay')}
+        >
           <FaCcApplePay /> Apple Pay
         </Button>
       </Container>
