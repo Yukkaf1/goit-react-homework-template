@@ -1,5 +1,7 @@
-import { Field, Form, Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
+import { Form } from '../VisaPaymentForm/VisaPaymentForm.styled';
 import * as Yup from 'yup';
+import { FormField } from '../FormFild/FormFild';
 
 const initialValues = {
   cardHolder: '',
@@ -7,15 +9,20 @@ const initialValues = {
   cvv: '',
 };
 
+Yup.addMethod(Yup.string, 'numeric', function () {
+  return this.matches(/^\d+$/, 'The field should have digits only');
+});
+
 const validationSchema = Yup.object({
   cardHolder: Yup.string().required(),
-  cardNumber: Yup.string().length(16).required(),
-  cvv: Yup.string().length(3).required(),
+  cardNumber: Yup.string().numeric().length(1).required(),
+  cvv: Yup.string().length(3).numeric().required(),
 });
 
 export const VisaPaymentForm = () => {
   const handleSubmit = (values, actions) => {
     console.log(values);
+    setTimeout(() => actions.setSubmitting(false), 1000);
   };
 
   return (
@@ -24,24 +31,20 @@ export const VisaPaymentForm = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <label>
-          <span>Card holder</span>
-          <Field name="cardHolder" />
-          <ErrorMessage name="cardHolder" component="div" />
-        </label>
-        <label>
-          <span>Card number</span>
-          <Field name="cardNumber" />
-          <ErrorMessage name="cardNumber" component="div" />
-        </label>
-        <label>
-          <span>CVV</span>
-          <Field name="cvv" />
-          <ErrorMessage name="cvv" component="div" />
-        </label>
-        <button type="submit">Pay</button>
-      </Form>
+      {({ isSubmitting }) => {
+        console.log(isSubmitting);
+        return (
+          <Form>
+            <FormField label="cardHolder" name="cardHolder" />
+            <FormField label="cardNumber" name="cardNumber" />
+            <FormField label="cvv" name="cvv" />
+
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Attempting to pay...' : 'Pay'}
+            </button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
