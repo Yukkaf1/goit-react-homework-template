@@ -23,11 +23,11 @@ export class PaymentWidget extends Component {
           selected={selectedMethod}
           onSelect={this.selectPaymentMethod}
         />
-        {selectedMethod === paymentMethod.visa && <div> Visa form </div>}
+        {selectedMethod === paymentMethod.visa && <div> Visa Form </div>}
         {selectedMethod === paymentMethod.mastercard && (
-          <div> Mastercard form</div>
+          <div> Mastercard Form</div>
         )}
-        {selectedMethod === paymentMethod.applepay && <div>ApplePay form </div>}
+        {selectedMethod === paymentMethod.applepay && <div>ApplePay Form </div>}
       </Container>
     );
   }
