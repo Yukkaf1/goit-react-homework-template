@@ -1,42 +1,33 @@
 import { Component } from 'react';
-import { Container, Button } from './PaymentWidget.styled';
-import { FaCcMastercard, FaCcVisa, FaCcApplePay } from 'react-icons/fa';
+import { Container } from './PaymentWidget.styled';
+import { PaymentMethods } from '../PaymentMethods/PaymentMethods';
+import { paymentMethod } from 'constans';
 
 export class PaymentWidget extends Component {
   state = {
     selectedMethod: null,
   };
 
-  selectPaymentMethod = metod => {
+  selectPaymentMethod = method => {
     this.setState({
-      selectedMethod: metod,
+      selectedMethod: method,
     });
   };
 
   render() {
     const { selectedMethod } = this.state;
+
     return (
       <Container>
-        <Button
-          selected={selectedMethod === 'mastercard'}
-          onClick={() => this.selectPaymentMethod('mastercard')}
-        >
-          <FaCcMastercard /> Mastercard
-        </Button>
-
-        <Button
-          selected={selectedMethod === 'visa'}
-          onClick={() => this.selectPaymentMethod('visa')}
-        >
-          <FaCcVisa /> Visa
-        </Button>
-
-        <Button
-          selected={selectedMethod === 'applepay'}
-          onClick={() => this.selectPaymentMethod('applepay')}
-        >
-          <FaCcApplePay /> Apple Pay
-        </Button>
+        <PaymentMethods
+          selected={selectedMethod}
+          onSelect={this.selectPaymentMethod}
+        />
+        {selectedMethod === paymentMethod.visa && <div> Visa form </div>}
+        {selectedMethod === paymentMethod.mastercard && (
+          <div> Mastercard form</div>
+        )}
+        {selectedMethod === paymentMethod.applepay && <div>ApplePay form </div>}
       </Container>
     );
   }
